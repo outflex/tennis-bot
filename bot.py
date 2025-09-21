@@ -1,6 +1,5 @@
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.utils import executor
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 import random
@@ -8,11 +7,12 @@ import os
 
 API_TOKEN = os.getenv('API_TOKEN')  # API токен будет храниться в переменной окружения Railway
 
+# Настройка логирования
 logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
-dp.middleware.setup(LoggingMiddleware())
 
 # Клавиатура для бота
 main_menu = ReplyKeyboardMarkup(resize_keyboard=True)
