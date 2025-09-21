@@ -18,15 +18,30 @@ bot = Bot(token=API_TOKEN)
 # Инициализация диспетчера
 dp = Dispatcher()
 
-# Клавиатура для бота
-main_menu = ReplyKeyboardMarkup(resize_keyboard=True)
-main_menu.add(KeyboardButton('Начать обучение'))
+# Подключаем бота к диспетчеру
+dp.bot = bot
 
-next_step_menu = ReplyKeyboardMarkup(resize_keyboard=True)
-next_step_menu.add(KeyboardButton('Следующий шаг'), KeyboardButton('Главное меню'))
+# Клавиатура для бота (исправленная версия для aiogram 3.x)
+main_menu = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton('Начать обучение')]
+    ],
+    resize_keyboard=True
+)
 
-retry_menu = ReplyKeyboardMarkup(resize_keyboard=True)
-retry_menu.add(KeyboardButton('Начать обучение'))
+next_step_menu = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton('Следующий шаг'), KeyboardButton('Главное меню')]
+    ],
+    resize_keyboard=True
+)
+
+retry_menu = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton('Начать обучение')]
+    ],
+    resize_keyboard=True
+)
 
 # Список шагов обучения с изображениями
 steps = [
@@ -108,9 +123,10 @@ async def next_step(message: types.Message):
 # Викторина
 async def quiz(message: types.Message):
     question = random.choice(quiz_questions)
-    markup = ReplyKeyboardMarkup(resize_keyboard=True)
-    for option in question["options"]:
-        markup.add(KeyboardButton(option))
+    markup = ReplyKeyboardMarkup(
+        keyboard=[[KeyboardButton(option)] for option in question["options"]],
+        resize_keyboard=True
+    )
 
     await message.answer(question["question"], reply_markup=markup)
 
@@ -126,7 +142,7 @@ async def quiz(message: types.Message):
 
 # Асинхронный запуск с использованием asyncio
 async def main():
-    await dp.start_polling(bot)
+    await dp.start_polling()
 
 if __name__ == '__main__':
     asyncio.run(main())
