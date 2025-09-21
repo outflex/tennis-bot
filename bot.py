@@ -18,9 +18,6 @@ bot = Bot(token=API_TOKEN)
 # Инициализация диспетчера
 dp = Dispatcher()
 
-# Подключаем бота к диспетчеру
-dp.setup(bot)
-
 # Клавиатура для бота
 main_menu = ReplyKeyboardMarkup(resize_keyboard=True)
 main_menu.add(KeyboardButton('Начать обучение'))
@@ -129,7 +126,7 @@ async def quiz(message: types.Message):
 
 # Асинхронный запуск с использованием asyncio
 async def main():
-    await dp.start_polling()
+    await dp.start_polling(bot)
 
 if __name__ == '__main__':
     asyncio.run(main())
