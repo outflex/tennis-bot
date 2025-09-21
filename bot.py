@@ -1,6 +1,5 @@
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ParseMode, InputFile
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.utils import executor
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
@@ -35,7 +34,30 @@ steps = [
         "text": "Основные правила:\n1. Матч состоит из нескольких сетов. Каждый сет состоит из геймов.\n2. Игроки начинают с подачи, и если мяч попадает в корт соперника, это очко.\n3. Игроки по очереди подают, а соперник должен попытаться отбить мяч, чтобы заработать очко.",
         "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Tennis_rules.png"
     },
-    # Добавляем больше шагов
+    {
+        "text": "Как считаются очки:\n1. Счет в гейме идет как 15, 30, 40, и затем выигрывается гейм, если игрок выигрывает два очка подряд после 40-40 (действие называется «деус»).\n2. После выигрыша гейма игрок получает один выигранный сет, который состоит из 6 геймов (если ничья, то играют тайбрейк).",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Tennis_score_example.jpg"
+    },
+    {
+        "text": "Как считается сет:\n1. Сет состоит из 6 геймов, но если счет 5-5, то необходимо выиграть с разницей в два гейма (например, 7-5).\n2. Если счет 6-6, играют тайбрейк, где первый игрок, набравший 7 очков с разницей в два, выигрывает сет.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Tennis_foul.png"
+    },
+    {
+        "text": "Фолы и ошибки:\n1. Подавать можно только дважды, если оба удара не попали в корт, то это фол и очко переходит к сопернику.\n2. Если мяч выходит за пределы корта или касается сетки, это ошибка.\n3. Нельзя касаться сетки ракеткой или телом во время розыгрыша.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Tennis_error.png"
+    },
+    {
+        "text": "Виды ударов: 1. Форхенд (удар с передней стороны). 2. Бэкхенд (удар с задней стороны). 3. Слайс (удар с низким мячом). 4. Лоб (удар, поднимающий мяч высоко над соперником).",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Tennis_shottypes.png"
+    },
+    {
+        "text": "Типы покрытия: 1. Травяное покрытие (ускоряет мяч). 2. Грунтовое покрытие (замедляет мяч). 3. Хард (средняя скорость).",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tennis_court_3_surface_types.png"
+    },
+    {
+        "text": "Поздравляю! Вы завершили обучение. Теперь давайте проверим ваши знания.",
+        "image": None
+    }
 ]
 
 # Вопросы для викторины
