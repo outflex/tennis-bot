@@ -12,9 +12,14 @@ API_TOKEN = os.getenv('API_TOKEN')
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Инициализация бота и диспетчера
+# Инициализация бота
 bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+
+# Инициализация диспетчера
+dp = Dispatcher()
+
+# Подключаем бота к диспетчеру
+dp.setup(bot)
 
 # Клавиатура для бота
 main_menu = ReplyKeyboardMarkup(resize_keyboard=True)
